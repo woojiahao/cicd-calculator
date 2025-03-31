@@ -8,6 +8,10 @@ function App() {
   const [y, setY] = useState<number | undefined>(0);
   const [result, setResult] = useState<number>();
 
+  if (true) {
+    useEffect(() => console.log("hi"), [])
+  }
+
   const disabled = useMemo(() => x == null || y == null, [x, y]);
 
   const operate = useCallback(

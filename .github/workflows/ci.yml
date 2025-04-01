@@ -1,0 +1,27 @@
+# .github/workflows/ci.yml
+name: CI/CD Pipeline 
+# this workflow will run when there is a pull req (when will it run?)
+on: [pull_request, workflow_dispatch]
+# jobs are vms that run your behaviour
+jobs:
+  unit-tests: # id -> let us refer to job itself
+    runs-on: ubuntu-latest
+    steps:
+    # fetch repo that person made the pull req
+      - name: Fetch repository
+        uses: actions/checkout@v4
+        # Install nodejs 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn' # stick to yarn log file
+        # Install proj dependencies
+      - name: Install dependencies
+      # Run set of commands within vm 
+        run: |
+          yarn
+        # Run 
+      - name: Run unit tests
+        run: |
+          NODE_ENV=production yarn test

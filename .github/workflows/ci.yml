@@ -13,13 +13,15 @@ jobs:
         # Install nodejs 
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        # 
         with:
           node-version: '20'
           cache: 'yarn' # stick to yarn log file
+        # Install proj dependencies
       - name: Install dependencies
+      # Run set of commands within vm 
         run: |
           yarn
+        # Run 
       - name: Run unit tests
         run: |
           NODE_ENV=production yarn test
